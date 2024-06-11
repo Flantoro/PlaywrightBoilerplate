@@ -44,15 +44,6 @@ jobs:
         if: always()
         run: npm run allure:generate
 
-      - name: Deploy report
-        uses: JamesIves/github-pages-deploy-action@3.1.0
-        if: always()
-        with:
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN}}
-          BRANCH: master
-          FOLDER: allure-report
-          TARGET_FOLDER: docs
-
   test2:
     if: always()
     needs: test
@@ -94,15 +85,6 @@ jobs:
         if: always()
         run: npm run allure:generate
 
-      - name: Deploy report
-        uses: JamesIves/github-pages-deploy-action@3.1.0
-        if: always()
-        with:
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: master
-          FOLDER: allure-report
-          TARGET_FOLDER: docs
-
   test1:
     if: always()
     needs: [test, test2]
@@ -140,10 +122,22 @@ jobs:
       - name: Download artifacts
         if: always()
         uses: actions/download-artifact@v2
+        with:
+          name: allure-results-test
+          path: ./allure-results-test
+      - name: Download artifacts
+        if: always()
+        uses: actions/download-artifact@v2
+        with:
+          name: allure-results-test2
+          path: ./allure-results-test2
 
       - name: Unpack artifacts
         if: always()
-        run: sudo cp -r $(pwd)/allure-results-test/*.* $(pwd)/allure-results/ && sudo cp -r $(pwd)/allure-results-test2/*.* $(pwd)/allure-results/ && sudo cp -r $(pwd)/allure-results-test1/*.* $(pwd)/allure-results/
+        run: |
+          cp -r $(pwd)/allure-results-test/. $(pwd)/allure-results/
+          cp -r $(pwd)/allure-results-test2/. $(pwd)/allure-results/
+          cp -r $(pwd)/allure-results-test1/. $(pwd)/allure-results/
 
       - name: Display structure of downloaded files
         run: ls -R
