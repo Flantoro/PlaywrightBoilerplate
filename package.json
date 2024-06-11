@@ -1,0 +1,24 @@
+{
+  "name": "playwrightboilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "allure:clean": "rm -rf allure-results/* allure-report/*",
+    "allure:history": "cp -R allure-report/history allure-results",
+    "allure:serve": "npx allure serve allure-results",
+    "allure:serve:hi": "npm run allure:history && npx allure serve allure-results",
+    "allure:generate:hi": "npm run allure:history && npx allure generate allure-results --clean",
+    "allure:generate": "npx allure generate allure-results --clean"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.44.1",
+    "@types/node": "^20.14.0",
+    "allure-commandline": "^2.29.0",
+    "allure-playwright": "^2.15.1"
+  }
+}

@@ -1,0 +1,162 @@
+name: Test and Create Report
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.11.1]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Copy History
+        if: always()
+        run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Upload Allure results
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: allure-results-test
+          path: ./allure-results
+
+      - name: Generate Allure Report
+        if: always()
+        run: npm run allure:generate
+
+      - name: Deploy report
+        uses: JamesIves/github-pages-deploy-action@3.1.0
+        if: always()
+        with:
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN}}
+          BRANCH: master
+          FOLDER: allure-report
+          TARGET_FOLDER: docs
+
+  test2:
+    if: always()
+    needs: test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.11.1]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Copy History
+        if: always()
+        run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Upload Allure results
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: allure-results-test2
+          path: ./allure-results
+
+      - name: Generate Allure Report
+        if: always()
+        run: npm run allure:generate
+
+      - name: Deploy report
+        uses: JamesIves/github-pages-deploy-action@3.1.0
+        if: always()
+        with:
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: master
+          FOLDER: allure-report
+          TARGET_FOLDER: docs
+
+  test1:
+    if: always()
+    needs: [test, test2]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.11.1]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Copy History
+        if: always()
+        run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
+
+      - name: Upload Allure results
+        uses: actions/upload-artifact@v1
+        if: always()
+        with:
+          name: allure-results-test1
+          path: ./allure-results
+
+      - name: Download artifacts
+        if: always()
+        uses: actions/download-artifact@v2
+
+      - name: Unpack artifacts
+        if: always()
+        run: sudo cp -r $(pwd)/allure-results-test/*.* $(pwd)/allure-results/ && sudo cp -r $(pwd)/allure-results-test2/*.* $(pwd)/allure-results/ && sudo cp -r $(pwd)/allure-results-test1/*.* $(pwd)/allure-results/
+
+      - name: Display structure of downloaded files
+        run: ls -R
+
+      - name: Generate Report
+        if: always()
+        run: npm run allure:generate
+
+      - name: Deploy report
+        uses: JamesIves/github-pages-deploy-action@3.1.0
+        if: always()
+        with:
+          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: master
+          FOLDER: allure-report
+          TARGET_FOLDER: docs

@@ -1,0 +1,8 @@
+PUT /api/users/2: {
+  status: 200,
+  body: {
+    name: 'morpheus',
+    job: 'zion resident',
+    updatedAt: '2024-06-06T12:18:31.196Z'
+  }
+}

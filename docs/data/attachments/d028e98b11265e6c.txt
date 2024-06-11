@@ -1,0 +1,9 @@
+POST /api/users/2: {
+  status: 201,
+  body: {
+    name: 'morpheus',
+    job: 'leader',
+    id: '377',
+    createdAt: '2024-06-11T09:47:02.668Z'
+  }
+}

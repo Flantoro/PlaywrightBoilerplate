@@ -1,0 +1,1 @@
+DELETE /api/users/2: { status: 204 }

@@ -1,0 +1,13 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+[{"data":{"run":12,"retry":0}},{"data":{"run":12,"retry":24}},{"data":{"run":12,"retry":0}},{"data":{"run":12,"retry":24}},{"data":{"run":12,"retry":24}}]
+=======
+[{"data":{"run":12,"retry":0}},{"data":{"run":12,"retry":0}},{"data":{"run":12,"retry":24}},{"data":{"run":12,"retry":0}},{"data":{"run":12,"retry":24}},{"data":{"run":12,"retry":24}}]
+>>>>>>> be4b2823836cbf6a84a57d49cf836af6e234a8bf
+=======
+[{"data":{"run":12,"retry":0}},{"data":{"run":12,"retry":0}},{"data":{"run":12,"retry":24}},{"data":{"run":12,"retry":0}},{"data":{"run":12,"retry":24}},{"data":{"run":12,"retry":24}}]
+>>>>>>> 942a41a3898989166bedc1d98d0a9572220dfa1d
+=======
+[{"data":{"run":12,"retry":24}},{"data":{"run":12,"retry":24}},{"data":{"run":12,"retry":0}},{"data":{"run":12,"retry":24}},{"data":{"run":12,"retry":24}}]
+>>>>>>> 8390691e082b5b552a71742f81532f8f697f50b2

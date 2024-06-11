@@ -1,0 +1,13 @@
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+{"reportName":"Allure Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":12,"unknown":0,"total":12},"time":{"start":1718099264428,"stop":1718099270748,"duration":6320,"minDuration":278,"maxDuration":886,"sumDuration":5830}}
+=======
+{"reportName":"Allure Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":12,"unknown":0,"total":12},"time":{"start":1718099318423,"stop":1718099325505,"duration":7082,"minDuration":284,"maxDuration":1899,"sumDuration":6584}}
+>>>>>>> be4b2823836cbf6a84a57d49cf836af6e234a8bf
+=======
+{"reportName":"Allure Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":12,"unknown":0,"total":12},"time":{"start":1718099320527,"stop":1718099342145,"duration":21618,"minDuration":259,"maxDuration":10129,"sumDuration":21022}}
+>>>>>>> 942a41a3898989166bedc1d98d0a9572220dfa1d
+=======
+{"reportName":"Allure Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":12,"unknown":0,"total":12},"time":{"start":1718099314599,"stop":1718099331834,"duration":17235,"minDuration":258,"maxDuration":9778,"sumDuration":16685}}
+>>>>>>> 8390691e082b5b552a71742f81532f8f697f50b2
