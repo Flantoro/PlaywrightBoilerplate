@@ -34,7 +34,7 @@ jobs:
         run: ls -R
 
       - name: Upload Allure results
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         if: always()
         with:
           name: allure-results-test
@@ -75,7 +75,7 @@ jobs:
         run: ls -R
 
       - name: Upload Allure results
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         if: always()
         with:
           name: allure-results-test2
@@ -113,31 +113,40 @@ jobs:
         run: cp -r $(pwd)/docs/history/. $(pwd)/allure-results/history
 
       - name: Upload Allure results
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2
         if: always()
         with:
           name: allure-results-test1
           path: ./allure-results
 
-      - name: Download artifacts
+      - name: Download artifacts (test)
         if: always()
         uses: actions/download-artifact@v2
         with:
           name: allure-results-test
-          path: ./allure-results-test
-      - name: Download artifacts
+          path: allure-results-test
+
+      - name: Download artifacts (test2)
         if: always()
         uses: actions/download-artifact@v2
         with:
           name: allure-results-test2
-          path: ./allure-results-test2
+          path: allure-results-test2
+
+      - name: Download artifacts (test1)
+        if: always()
+        uses: actions/download-artifact@v2
+        with:
+          name: allure-results-test1
+          path: allure-results-test1
 
       - name: Unpack artifacts
         if: always()
         run: |
-          cp -r $(pwd)/allure-results-test/. $(pwd)/allure-results/
-          cp -r $(pwd)/allure-results-test2/. $(pwd)/allure-results/
-          cp -r $(pwd)/allure-results-test1/. $(pwd)/allure-results/
+          mkdir -p allure-results
+          cp -r allure-results-test/. allure-results/ || true
+          cp -r allure-results-test2/. allure-results/ || true
+          cp -r allure-results-test1/. allure-results/ || true
 
       - name: Display structure of downloaded files
         run: ls -R
