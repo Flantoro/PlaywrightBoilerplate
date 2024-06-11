@@ -2,7 +2,7 @@ name: Test and Create Report
 
 on:
   push:
-    branches: [main]
+    branches: [master]
 
 jobs:
   test:
@@ -49,7 +49,7 @@ jobs:
         if: always()
         with:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN}}
-          BRANCH: main
+          BRANCH: master
           FOLDER: allure-report
           TARGET_FOLDER: docs
 
@@ -99,7 +99,7 @@ jobs:
         if: always()
         with:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: main
+          BRANCH: master
           FOLDER: allure-report
           TARGET_FOLDER: docs
 
@@ -157,6 +157,6 @@ jobs:
         if: always()
         with:
           ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: main
+          BRANCH: master
           FOLDER: allure-report
           TARGET_FOLDER: docs
